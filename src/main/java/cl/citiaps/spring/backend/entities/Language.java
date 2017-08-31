@@ -3,8 +3,7 @@ package cl.citiaps.spring.backend.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
-
-
+import java.util.Set;
 /**
  * The persistent language for the actor database table.
  * 
@@ -16,7 +15,7 @@ public class Language implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="language_id", unique=true, nullable=false)
+    @Column(name="language_id", unique=true, nullable=false)
 	private int languageId;
 
 	@Column(name="name", nullable=false, length=20)
@@ -24,6 +23,17 @@ public class Language implements Serializable {
 
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
+
+	@OneToMany (cascade=CascadeType.ALL , mappedBy="Language")
+	private Set<Film> films;
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Set<Film> getFilms() {
+		return films;
+	}
 
 	public Language() {
 	}
