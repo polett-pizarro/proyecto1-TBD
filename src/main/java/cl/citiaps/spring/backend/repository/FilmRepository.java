@@ -7,4 +7,8 @@ import cl.citiaps.spring.backend.entities.Film;
 public interface FilmRepository extends PagingAndSortingRepository<Film, Integer> {
 	
 
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
