@@ -17,7 +17,10 @@ public class Film_actor implements Serializable {
 	@Id
 	private int filmActorId;
 
+	@Column(name="actor_id", nullable=false)
 	private int actorId;
+	
+	@Column(name="film_id", nullable=false)
 	private int filmId;
 	
 	public Film_actor() {
