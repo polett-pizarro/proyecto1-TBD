@@ -2,9 +2,7 @@ package cl.citiaps.spring.backend.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import org.hibernate.mapping.Set;
-
 import java.sql.Timestamp;
 /**
  * The persistent language for the actor database table.

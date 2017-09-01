@@ -1,11 +1,16 @@
 package cl.citiaps.spring.backend.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import org.hibernate.mapping.Set;
-
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -31,20 +36,16 @@ public class Actor implements Serializable {
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
 
-	//private Set filmActors;
-
-	//@OneToMany (cascade=CascadeType.ALL , mappedBy="actor")
-	//private Set getFilmActors(){return this.filmActors;}
+	@ElementCollection
+	private Set<Film_actor> Film_actors = new HashSet<Film_actor>();
 	
-
+	public Actor() {
+	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-
-	public Actor() {
-	}
-
+	
 	public int getActorId() {
 		return this.actorId;
 	}
@@ -52,7 +53,7 @@ public class Actor implements Serializable {
 	public void setActorId(int actorId) {
 		this.actorId = actorId;
 	}
-
+	
 	public String getFirstName() {
 		return this.firstName;
 	}
@@ -76,5 +77,17 @@ public class Actor implements Serializable {
 	public void setLastUpdate(Timestamp lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
+	
+	public void addFilm(Film_actor film) {
+		this.Film_actors.add(film);
+	}
+	
+	public void setFilms_actor(Set<Film_actor> films) {
+        this.Film_actors = films;
+    }
+     
+    public void addFilm_actor(Film_actor filmActor) {
+        this.Film_actors.add(filmActor);
+    }
 
 }
