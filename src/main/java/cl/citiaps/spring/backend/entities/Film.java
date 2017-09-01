@@ -167,6 +167,10 @@ public class Film implements Serializable {
 	public int getLength() {
 		return length;
 	}
+	
+	@ManyToMany(cascade = {CascadeType.ALL},mappedBy="films")
+	private Set<Actor> actors=new HashSet<Actor>();
+	
    
    
 }

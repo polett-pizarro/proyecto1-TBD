@@ -37,9 +37,6 @@ public class Actor implements Serializable {
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
 
-	@ElementCollection
-	private Set<Film_actor> Film_actors = new HashSet<Film_actor>();
-	
 	public Actor() {
 	}
 	
@@ -79,16 +76,9 @@ public class Actor implements Serializable {
 		this.lastUpdate = lastUpdate;
 	}
 	
-	public void addFilm(Film_actor film) {
-		this.Film_actors.add(film);
-	}
-	
-	public void setFilms_actor(Set<Film_actor> films) {
-        this.Film_actors = films;
-    }
-     
-    public void addFilm_actor(Film_actor filmActor) {
-        this.Film_actors.add(filmActor);
-    }
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name="Film_actor", joinColumns={@JoinColumn(name="actor_id")},
+	inverseJoinColumns={@JoinColumn(name="Film_id")})
+	private Set<Film> films=new HashSet<Film>();
 
 }
