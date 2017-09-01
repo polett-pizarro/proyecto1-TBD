@@ -8,6 +8,7 @@ import java.sql.Timestamp;
  * The persistent language for the actor database table.
  * 
  */
+/*
 @Entity
 @Table(name="film_actor")
 @NamedQuery(name="Film_actor.findAll", query="SELECT a FROM Film_actor a")
@@ -45,4 +46,4 @@ public class Film_actor implements Serializable {
 	
 
 	
-}
+}*/

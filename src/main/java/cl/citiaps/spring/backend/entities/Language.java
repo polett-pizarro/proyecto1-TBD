@@ -24,16 +24,13 @@ public class Language implements Serializable {
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
 
-	@OneToMany (cascade=CascadeType.ALL , mappedBy="Language")
-	private Set<Film> films;
+	//@OneToMany (cascade=CascadeType.ALL , mappedBy="Language")
+	//private Set<Film> films;
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	public Set<Film> getFilms() {
-		return films;
-	}
 
 	public Language() {
 	}

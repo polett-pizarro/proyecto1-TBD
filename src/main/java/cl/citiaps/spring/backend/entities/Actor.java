@@ -29,16 +29,14 @@ public class Actor implements Serializable {
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
 
-	@OneToMany (cascade=CascadeType.ALL , mappedBy="Actor")
+	/*@OneToMany (cascade=CascadeType.ALL , mappedBy="Actor")
 	private Set<Film_actor> filmActors;
-	
+	*/
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	public Set<Film_actor> getFilmActors() {
-		return filmActors;
-	}
 
 	public Actor() {
 	}
