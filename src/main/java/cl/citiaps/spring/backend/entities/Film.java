@@ -2,8 +2,10 @@ package cl.citiaps.spring.backend.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.hibernate.mapping.Set;
+
 import java.sql.Timestamp;
-import java.util.Set;
 
 
 /**
@@ -16,6 +18,9 @@ import java.util.Set;
 public class Film implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private Language languageId;
+	private Language originalLanguajeId;
+	
 	@Id
 	@Column(name="film_id", unique=true, nullable=false)
 	private int actorId;
@@ -28,14 +33,16 @@ public class Film implements Serializable {
 
 	@Column(name="release_year", length=4)
 	private String releaseYear;
+
 	
-	 /*@ManyToOne(fetch=FetchType.LAZY) 
-	 @JoinColumn(name="languaje_id",nullable=false)
-	 private Language languajeId;
+	
+	 @ManyToOne (fetch=FetchType.LAZY) 
+	 @JoinColumn(name="language_id",nullable=false)
+	 public Language getlenguaje(){return this.languageId;}
 	 
 	 @ManyToOne(fetch=FetchType.LAZY) 
      @JoinColumn(name="original_languaje_id")
-	 private Language originalLanguajeId;*/
+	 public Language getOriginallenguaje(){return this.originalLanguajeId;}
 	
 	@Column(name="rental_duration", nullable=false )
 	private int rentalDuration;
@@ -58,10 +65,12 @@ public class Film implements Serializable {
 	
 	@Column (name="last_update", nullable=false)
 	private Timestamp lastUpdate;
+
+	//private Set filmActors;
 	
-	/*@OneToMany (cascade=CascadeType.ALL , mappedBy="Film")
-	private Set<Film_actor> filmActors;
-	*/
+	//@OneToMany (cascade=CascadeType.ALL , mappedBy="Film")
+	//private Set getFilmActors(){ return this.filmActors;}
+	
 	public Film() {
 	}
 

@@ -13,18 +13,21 @@ import java.sql.Timestamp;
 @Table(name="film_actor")
 @NamedQuery(name="Film_actor.findAll", query="SELECT a FROM Film_actor a")
 public class Film_actor implements Serializable {
-	
+	/*
 	private static final long serialVersionUID = 1L;
+	
+	private Actor actorId;
+	private Film FilmId;
 
 	@Id
 	@ManyToOne(fetch=FetchType.LAZY) 
 	@JoinColumn(name="actor_id", nullable=false)
-	private int actorId;
+	public Actor getActorId(){return this.actorId;}
 
-	@Id
+	
 	@ManyToOne(fetch=FetchType.LAZY) 
 	@JoinColumn(name="film_id", nullable=false)
-	private int filmId;
+	public Film getFilmId(){return this.FilmId;}
 
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
@@ -32,18 +35,12 @@ public class Film_actor implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	public Film_actor() {
 	}
-	public int getActorId() {
-		return actorId;
-	}
-	public int getFilmId() {
-		return filmId;
-	}
+	
 	public Timestamp getLastUpdate() {
 		return lastUpdate;
 	}
-	
-
-	
-}*/
+}
+	*/

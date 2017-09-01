@@ -2,8 +2,10 @@ package cl.citiaps.spring.backend.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.hibernate.mapping.Set;
+
 import java.sql.Timestamp;
-import java.util.Set;
 /**
  * The persistent language for the actor database table.
  * 
@@ -13,7 +15,7 @@ import java.util.Set;
 @NamedQuery(name="Language.findAll", query="SELECT a FROM Language a")
 public class Language implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
     @Column(name="language_id", unique=true, nullable=false)
 	private int languageId;
@@ -24,8 +26,10 @@ public class Language implements Serializable {
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
 
-	//@OneToMany (cascade=CascadeType.ALL , mappedBy="Language")
-	//private Set<Film> films;
+	private Set films;
+
+	@OneToMany (cascade=CascadeType.ALL , mappedBy="language")
+	public Set getFilms(){return this.films;}
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
