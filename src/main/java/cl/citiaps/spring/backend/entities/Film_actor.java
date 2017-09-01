@@ -10,30 +10,37 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name="film_actor")
-@NamedQuery(name="Film_actor.findAll", query="SELECT a FROM Film_actor a")
+@NamedQueries ({
+	@NamedQuery(name="Film_actor.findAll", query="SELECT fa FROM Film_actor fa"),
+	@NamedQuery(name="find all movies by actor by his id", query="SELECT f FROM Film f, Film_actor fa WHERE fa.actorId = :id AND f.filmId = fa.filmId"),
+	@NamedQuery(name="find all actors by movie by his id", query="SELECT a FROM Actor a, Film_actor fa WHERE fa.filmId = :id AND a.actorId = fa.actorId")
+
+})
 public class Film_actor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	//@Id
+	//private int filmActorId;
+	
 	@Id
-	private int filmActorId;
-
 	@Column(name="actor_id", nullable=false)
 	private int actorId;
 	
+	@Id
 	@Column(name="film_id", nullable=false)
 	private int filmId;
 	
 	public Film_actor() {
 	}
 	
-	public int getFilmActorId() {
+	/*public int getFilmActorId() {
         return filmActorId;
     }
     
     public void setFilmActorId(int filmActorId) {
         this.filmActorId = filmId;
 	    }
-	
+	*/
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.Column;
+import javax.persistence.*;
+/*import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+*/
 
 
 /**
@@ -25,15 +25,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="film")
-@NamedQuery(name="Film.findAll", query="SELECT a FROM Film a")
+@NamedQuery(name="Film.findAll", query="SELECT f FROM Film f")
 public class Film implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+/*
+	@Column(name="lenguage_id",nullable=false)
 	private int languageId;
-	private int originalLanguajeId;
 	
-	@ElementCollection
-	private Set<Film_actor> actorFilms = new HashSet<Film_actor>();
+	@Column (name="original_language_id")
+	private int originalLanguageId;
+	*/
+	
 	
 	@Id
 	@Column(name="film_id", unique=true, nullable=false)
@@ -69,8 +71,50 @@ public class Film implements Serializable {
 	@Column (name="last_update", nullable=false)
 	private Timestamp lastUpdate;
 	
-    public Film() {
+	
+	//@ElementCollection
+	//private Set<Film_actor> actorFilms = new HashSet<Film_actor>();
+    
+	
+	/*@ManyToOne (fetch=FetchType.LAZY) 
+	@JoinColumn(name="language_id",nullable=false)
+	public int getlenguaje(){return this.languageId;}
+	 
+	@ManyToOne(fetch=FetchType.LAZY) 
+	@JoinColumn(name="original_language_id")
+	public int getOriginallenguaje(){return this.originalLanguajeId;}
+	*/
+    
+    /*@OneToMany(mappedBy = "film")
+    public Set<Film_actor> getActorFilms() {
+        return actorFilms;
+    }*/
+	
+	
+	
+	public Film() {
     }
+
+	
+	/*public Set<Film_actor> getActorFilms() {
+		return actorFilms;
+	}*/
+
+	public Timestamp getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public String getSpecialFeatures() {
+		return specialFeatures;
+	}
+
+	public String getRating() {
+		return rating;
+	}
+
+	public float getReplacementCost() {
+		return replacementCost;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -88,7 +132,11 @@ public class Film implements Serializable {
         return title;
     }
     
-    public void setTitle(String title) {
+    public float getRentalRate() {
+		return rentalRate;
+	}
+
+	public void setTitle(String title) {
         this.title = title;
     }
 
@@ -115,74 +163,10 @@ public class Film implements Serializable {
     public void setRentalDuration(int rentalDuration) {
         this.rentalDuration = rentalDuration;
     }
-    public float getRentalRate() {
-        return rentalRate;
-    }
-    
-    public void setRentalRate(float rentalRate) {
-        this.rentalRate = rentalRate;
-    }
-    
-    public int getLength() {
-        return length;
-    }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
-    
-    public float getReplacementCost() {
-        return replacementCost;
-    }
-    
-    public void setReplacementCost(float replacementCost) {
-        this.replacementCost = replacementCost;
-    }
-    
-    public String getRating() {
-        return rating;
-    }
-    
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-    
-    public String getSpecialFeatures() {
-        return specialFeatures;
-    }
-    
-    public void setSpecialFeatures(String specialFeatures) {
-        this.specialFeatures = specialFeatures;
-    }
-	
-    
-	@ManyToOne (fetch=FetchType.LAZY) 
-	@JoinColumn(name="language_id",nullable=false)
-	public int getlenguaje(){return this.languageId;}
-	 
-	@ManyToOne(fetch=FetchType.LAZY) 
-	@JoinColumn(name="original_languaje_id")
-	public int getOriginallenguaje(){return this.originalLanguajeId;}
-	
-    
-    @OneToMany(mappedBy = "film")
-    public Set<Film_actor> getActorFilms() {
-        return actorFilms;
-    }
- 
-    public void setActorFilms(Set<Film_actor> films) {
-        this.actorFilms = films;
-    }
-     
-    public void addActorFilm(Film_actor actorFilm) {
-        this.actorFilms.add(actorFilm);
-    }
-
-	public Timestamp getLastUpdate() {
-		return lastUpdate;
+	public int getLength() {
+		return length;
 	}
-
-	public void setLastUpdate(Timestamp lastUpdate) {
-		this.lastUpdate = lastUpdate;
-	}
+   
+   
 }
