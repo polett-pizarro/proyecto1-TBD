@@ -1,5 +1,7 @@
 package cl.citiaps.spring.backend.rest;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.citiaps.spring.backend.entities.Actor;
+import cl.citiaps.spring.backend.entities.Film;
 import cl.citiaps.spring.backend.repository.ActorRepository;
+import cl.citiaps.spring.backend.repository.FilmRepository;
 
 @RestController  
 @RequestMapping("/actors")
@@ -37,6 +41,12 @@ public class ActorService {
 	@ResponseBody
 	public Actor create(@RequestBody Actor resource) {
 	     return actorRepository.save(resource);
+	}
+	
+	@RequestMapping(value ="/{id}/films", method = RequestMethod.GET)
+	@ResponseBody
+	public Set<Film> findFilmActors(@PathVariable("id") Integer id) {
+            return actorRepository.findOne(id).getFilm();
 	}
 	 
 }

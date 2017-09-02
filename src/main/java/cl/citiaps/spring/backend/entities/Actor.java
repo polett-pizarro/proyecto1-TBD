@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 /*import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -14,14 +16,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 */
 
+//import cl.citiaps.spring.backend.rest.FilmService;
+
 /**
  * The persistent class for the actor database table.
+ * @param <Films>
  * 
  */
 @Entity
 @Table(name="actor")
 @NamedQuery(name="Actor.findAll", query="SELECT a FROM Actor a")
-public class Actor implements Serializable {
+public class Actor<Films> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -77,8 +82,15 @@ public class Actor implements Serializable {
 	}
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="Film_actor", joinColumns={@JoinColumn(name="actor_id")},
-	inverseJoinColumns={@JoinColumn(name="Film_id")})
+	@JoinTable(name="Film_actor", 
+		joinColumns=@JoinColumn(name="actor_id"),
+		inverseJoinColumns=@JoinColumn(name="Film_id"))
+	@JsonIgnore
 	private Set<Film> films=new HashSet<Film>();
+
+	public Set<Film> getFilm() {
+		return this.films;
+	}
+	
 
 }
