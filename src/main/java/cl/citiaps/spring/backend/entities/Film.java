@@ -1,10 +1,10 @@
 package cl.citiaps.spring.backend.entities;
 
-//import org.hibernate.mapping.set;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.*;
 /*import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -17,6 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 */
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -173,12 +175,12 @@ public class Film implements Serializable {
 	}
 	
 	@ManyToMany(cascade = {CascadeType.ALL},mappedBy="films")
+	@JsonIgnore
 	private Set<Actor> actors=new HashSet<Actor>();
-	
+
 	public Set<Actor> getActors() {
 		return this.actors;
 	}
-	
 	
 
    
