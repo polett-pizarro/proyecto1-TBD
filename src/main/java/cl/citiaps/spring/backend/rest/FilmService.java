@@ -1,5 +1,7 @@
 package cl.citiaps.spring.backend.rest;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.citiaps.spring.backend.entities.Film;
-//import cl.citiaps.spring.backend.entities.Actor;
-//import cl.citiaps.spring.backend.repository.ActorRepository;
+import cl.citiaps.spring.backend.entities.Actor;
+import cl.citiaps.spring.backend.repository.ActorRepository;
 import cl.citiaps.spring.backend.repository.FilmRepository;
 
 @RestController  
@@ -22,8 +24,8 @@ public class FilmService {
     
         @Autowired
 	private FilmRepository filmRepository;
-    //    @Autowired
-	//private ActorRepository actorRepository;
+        @Autowired
+	private ActorRepository actorRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
@@ -44,11 +46,9 @@ public class FilmService {
 	     return filmRepository.save(resource);
 	}
         
-        /*
-        @RequestMapping(value = "/{id}/actors", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/actors", method = RequestMethod.GET)
 	@ResponseBody
-	public Iterable<Actor> findFilmActors(@PathVariable("id") Integer id) {
-            
-            return actorRepository.findAll();
-	}*/
+	public Set <Actor> findFilmActors(@PathVariable("id") Integer id) {
+            return filmRepository.findOne(id).getActors();
+	}
 }
