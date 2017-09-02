@@ -38,19 +38,35 @@ public class FilmService {
 	public  Film findOne(@PathVariable("id") Integer id) {
 		return filmRepository.findOne(id);
 	}
-        
-        @RequestMapping(method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
-	@ResponseBody
-	public Film create(@RequestBody Film resource) {
-	     return filmRepository.save(resource);
-	}
-        
-        
+          
         
     @RequestMapping(value = "/{id}/actors", method = RequestMethod.GET)
 	@ResponseBody
 	public Set <Actor> findFilmActors(@PathVariable("id") Integer id) {
             return filmRepository.findOne(id).getActors();
+	}
+    @RequestMapping(value ="/{id}/actors/{id2}" , method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public String vincular(@PathVariable("id") Integer id, @PathVariable("id2") Integer id2) {
+        Actor actor = actorRepository.findOne(id2);
+        Film film = filmRepository.findOne(id);
+        if (actor != null && film != null){
+            film.getActors().add(actor);
+            filmRepository.save(film);
+            return "yes";
+        }
+        else{
+            return "no";
+        }
+         //return actorRepository.save(resource);
+    }  
+   
+       
+    @RequestMapping(method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public Film create(@RequestBody Film resource) {
+	     return filmRepository.save(resource);
 	}
 }
