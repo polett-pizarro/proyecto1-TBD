@@ -96,9 +96,13 @@ public class Film implements Serializable {
     }
 
 	
+	
 	/*public Set<Film_actor> getActorFilms() {
 		return actorFilms;
 	}*/
+
+	
+
 
 	public Timestamp getLastUpdate() {
 		return lastUpdate;
@@ -171,6 +175,10 @@ public class Film implements Serializable {
 	@ManyToMany(cascade = {CascadeType.ALL},mappedBy="films")
 	private Set<Actor> actors=new HashSet<Actor>();
 	
+	public Set<Actor> getActors() {
+		return this.actors;
+	}
+
    
    
 }
