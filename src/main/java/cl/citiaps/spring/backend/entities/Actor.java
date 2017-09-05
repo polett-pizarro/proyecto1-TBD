@@ -6,7 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
  
 import javax.persistence.*;
- 
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 /*import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -24,6 +26,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
+@CrossOrigin(origins = "http://localhost:8083")
 @Table(name="actor")
 @NamedQuery(name="Actor.findAll", query="SELECT a FROM Actor a")
 public class Actor<Films> implements Serializable {
