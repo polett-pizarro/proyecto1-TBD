@@ -7,12 +7,10 @@ import java.util.Set;
  
 import javax.persistence.*;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@CrossOrigin(origins = "http://localhost:8083")//se debe poner el puerto que ustedes usan en Vue;
 @Table(name="actor")
 @NamedQuery(name="Actor.findAll", query="SELECT a FROM Actor a")
 public class Actor<Films> implements Serializable {
