@@ -10,23 +10,9 @@ import javax.persistence.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-/*import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-*/
- 
-//import cl.citiaps.spring.backend.rest.FilmService;
- 
-/**
- * The persistent class for the actor database table.
- * @param <Films>
- *
- */
+
 @Entity
-@CrossOrigin(origins = "http://localhost:8083")
+@CrossOrigin(origins = "http://localhost:8083")//se debe poner el puerto que ustedes usan en Vue;
 @Table(name="actor")
 @NamedQuery(name="Actor.findAll", query="SELECT a FROM Actor a")
 public class Actor<Films> implements Serializable {

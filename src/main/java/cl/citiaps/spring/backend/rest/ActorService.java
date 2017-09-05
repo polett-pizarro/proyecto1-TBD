@@ -4,6 +4,7 @@ import java.util.Set;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,8 @@ import cl.citiaps.spring.backend.entities.Actor;
 import cl.citiaps.spring.backend.entities.Film;
 import cl.citiaps.spring.backend.repository.ActorRepository;
 import cl.citiaps.spring.backend.repository.FilmRepository;
+
+@CrossOrigin(origins = "http://localhost:8083")//se debe poner el puerto que ustedes usan en Vue;
 @RestController  
 @RequestMapping("/actors")
 public class ActorService {
